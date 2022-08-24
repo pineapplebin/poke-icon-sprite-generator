@@ -5,7 +5,7 @@ const { generateFile } = require('./result');
 const generator = async () => {
   const [infos, files] = pickFiles();
   const sprite = await runSpritesmith(files);
-  generateFile(infos, sprite);
+  await generateFile(infos, sprite);
 };
 
 generator();

@@ -1,5 +1,6 @@
 const nodePath = require('path');
 const nodeFs = require('fs');
+const { fileUpload } = require('./tiny-png');
 
 const DIR = nodePath.join(nodePath.dirname(__dirname), 'output');
 
@@ -31,7 +32,9 @@ const generateCSS = (infos, coordinates) => {
 const generateFile = (infos, sprite) => {
   prepareOutputDir();
   generateCSS(infos, sprite.coordinates);
-  writeFile(`${FILE_NAME}.png`, sprite.image);
+  const filename = `${FILE_NAME}.png`;
+  writeFile(filename, sprite.image);
+  return fileUpload(nodePath.join(DIR, filename));
 };
 
 module.exports = { generateFile };
