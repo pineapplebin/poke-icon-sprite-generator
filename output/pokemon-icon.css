@@ -1,5 +1,5 @@
 .pokesprite { display: inline-block }
-.pokesprite.pokemon { width: 68px; height: 56px; background-image: url('pokemon-icon.png'); image-rendering: pixelated; image-rendering: -moz-crisp-edges }
+.pokesprite.pokemon { width: 68px; height: 56px; background-image: url('pokemon-icon.min.png'); image-rendering: pixelated; image-rendering: -moz-crisp-edges }
 .pokesprite.bulbasaur { background-position: -0px -0px }
 .pokesprite.ivysaur { background-position: -70px -0px }
 .pokesprite.venusaur { background-position: -140px -0px }
