@@ -23,9 +23,11 @@ const pickFiles = () => {
     forms.forEach(([key, form]) => {
       const name = `${item.slug.eng}${key === '$' ? '' : `-${key}`}`;
       const hasFemale = form.has_female || false;
-      result[getPath(name)] = { name };
+      const info = { name, isPure: key === '$' };
+
+      result[getPath(name)] = { ...info };
       if (hasFemale) {
-        result[getPath(name, true)] = { name, isFemale: true };
+        result[getPath(name, true)] = { ...info, isFemale: true };
       }
     });
   }

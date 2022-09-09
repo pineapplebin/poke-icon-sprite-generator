@@ -19,12 +19,18 @@ const writeFile = (name, data) => {
 const generateCSS = (infos, coordinates) => {
   const template = `.pokesprite { display: inline-block }\n.pokesprite.pokemon { width: 68px; height: 56px; background-image: url('${FILE_NAME}.min.png'); image-rendering: pixelated; image-rendering: -moz-crisp-edges }\n`;
 
-  const list = Object.entries(coordinates).map(([path, data]) => {
-    const info = infos[path];
-    return `.pokesprite.${info.name}${
-      info.isFemale ? '.female' : ''
-    } { background-position: -${data.x}px -${data.y}px }`;
-  });
+  const list = Object.entries(coordinates)
+    .sort((a, b) => {
+      if (infos[a[0]].isPure) return -1;
+      if (infos[b[0]].isPure) return 1;
+      return 0;
+    })
+    .map(([path, data]) => {
+      const info = infos[path];
+      return `.pokesprite.${info.name}${
+        info.isFemale ? '.female' : ''
+      } { background-position: -${data.x}px -${data.y}px }`;
+    });
 
   writeFile(`${FILE_NAME}.css`, template + list.join('\n'));
 };
